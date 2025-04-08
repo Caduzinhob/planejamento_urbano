@@ -91,8 +91,7 @@ O notebook `visualizacao_resultados.ipynb` foi desenvolvido para facilitar a an�
 
 ### Como Utilizar
 
-1. Atualize o caminho do arquivo `.ins` no notebook para ver as estatiscas de cada intancia,
-depois é só utilizar o botão de execução:
+1. Atualize o caminho do arquivo `.ins` no notebook para ver as estatíscas de cada instância, após isso só excecutar cada célula:
 
    ```python
    arquivo = [
