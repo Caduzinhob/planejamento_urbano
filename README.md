@@ -71,3 +71,30 @@ Para executar o programa principal e calcular as estatísticas do grafo, utiliza
 ## Iniciar o Jupyter Notebook
 
 - Rode o comando `jupyter notebook` no cmd, ele então abrirá a aba no navegador.
+
+
+## Visualização de Estatísticas do Grafo
+
+O notebook `visualizacao_resultados.ipynb` foi desenvolvido para facilitar a análise de estatísticas de grafos gerados a partir de arquivos `.ins`. Ele realiza as seguintes etapas:
+
+1. **Carregamento de Arquivo `.ins`**:
+   - O notebook utiliza a função `ler_arquivo_ins_arquivo` para carregar uma instância de grafo a partir de um arquivo `.ins`.
+
+2. **Cálculo de Estatísticas**:
+   - As estatísticas do grafo são calculadas utilizando as funções `floyd_warshall` (para gerar a matriz de distâncias) e `calcular_estatisticas`.
+
+3. **Exibição em Tabela**:
+   - As estatísticas calculadas são organizadas em um `DataFrame` do `pandas` e exibidas em formato de tabela estilizada.
+
+4. **Visualização Gráfica**:
+   - As métricas numéricas do grafo são exibidas em um gráfico de barras utilizando a biblioteca `matplotlib`.
+
+### Como Utilizar
+
+1. Atualize o caminho do arquivo `.ins` no notebook para ver as estatiscas de cada intancia,
+depois é só utilizar o botão de execução:
+
+   ```python
+   arquivo = [
+       r"D:\\Meus arquivos\\Documentos\\GitHub\\planejamento_urbano\\ins\\09.ins"
+   ]

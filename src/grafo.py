@@ -8,7 +8,7 @@ class Grafo:
         self.arcos_requeridos = []
 
     def adicionar_no(self, no):
-        self.nos.add(str(no))  # Garantir que os nós sejam strings
+        self.nos.add(str(no)) 
 
     def adicionar_aresta(self, de, para, custo):
         self.arestas.append((str(de), str(para), custo))

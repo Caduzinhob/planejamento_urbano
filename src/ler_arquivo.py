@@ -4,7 +4,15 @@ import sys
 def ler_arquivo_ins_stdin():
     grafo = Grafo()
     linhas = sys.stdin.readlines()
+    return _processar_linhas(linhas, grafo)
 
+def ler_arquivo_ins_arquivo(caminho):
+    grafo = Grafo()
+    with open(caminho, "r") as f:
+        linhas = f.readlines()
+    return _processar_linhas(linhas, grafo)
+
+def _processar_linhas(linhas, grafo):
     for i, linha in enumerate(linhas):
         linha = linha.strip()
         if linha.startswith("ReN."):
