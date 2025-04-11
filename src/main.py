@@ -1,11 +1,11 @@
 from ler_arquivo import ler_arquivo_ins_stdin
 from calcular_estatisticas import calcular_estatisticas
-from geracao_matriz import floyd_warshall
+from geracao_matriz import floydwarshall
 
 def main():
     grafo = ler_arquivo_ins_stdin()
 
-    matriz_caminhos = floyd_warshall(grafo)
+    matriz_caminhos = floydwarshall(grafo)
 
     estatisticas = calcular_estatisticas(grafo, matriz_caminhos)
 

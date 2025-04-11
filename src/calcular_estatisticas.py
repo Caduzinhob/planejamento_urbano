@@ -1,17 +1,17 @@
 def calcular_estatisticas(grafo, matriz_caminhos):
-    estatisticas = {
-        "Quantidade de vértices": len(grafo.nos),
-        "Quantidade de arestas": len(grafo.arestas),
-        "Quantidade de arcos": len(grafo.arcos),
-        "Quantidade de vértices requeridos": len(grafo.nos_requeridos),
-        "Quantidade de arestas requeridas": len(grafo.arestas_requeridas),
-        "Quantidade de arcos requeridos": len(grafo.arcos_requeridos),
-        "Densidade do grafo": calcular_densidade(grafo),
-        "Grau mínimo dos vértices": calcular_grau_minimo(grafo),
-        "Grau máximo dos vértices": calcular_grau_maximo(grafo),
-        "Intermediação": calcular_intermediacao(grafo, matriz_caminhos),
-        "Caminho médio": calcular_caminho_medio(matriz_caminhos),
+    return {
+        "Vértices": len(grafo.nos),
+        "Arestas": len(grafo.arestas),
+        "Arcos": len(grafo.arcos),
+        "Vértices Requeridos": len(grafo.nos_requeridos),
+        "Arestas Requeridas": len(grafo.arestas_requeridas),
+        "Arcos Requeridos": len(grafo.arcos_requeridos),
+        "Densidade": calcular_densidade(grafo),
+        "Grau Mínimo": calcular_grauminimo(grafo),
+        "Grau Máximo": calcular_graumaximo(grafo),
+        "Caminho Médio": calcular_caminho_medio(matriz_caminhos),
         "Diâmetro": calcular_diametro(matriz_caminhos),
+        "Intermediação Total": sum(calcular_intermediacao(grafo, matriz_caminhos).values())
     }
     return estatisticas
 
@@ -22,18 +22,24 @@ def calcular_densidade(grafo):
         return num_arestas_arcos / (num_vertices * (num_vertices - 1))
     return 0
 
-def calcular_grau_minimo(grafo):
+def calcular_grauminimo(grafo):
     graus = {no: 0 for no in grafo.nos}
-    for de, para, _ in grafo.arestas + grafo.arcos:
-        graus[de] += 1
-        graus[para] += 1
-    return min(graus.values()) if graus else None
 
-def calcular_grau_maximo(grafo):
-    graus = {no: 0 for no in grafo.nos}
-    for de, para, _ in grafo.arestas + grafo.arcos:
+    # Corrigido para desempacotar os três valores
+    for de, para, custo in grafo.arestas + grafo.arcos:
         graus[de] += 1
         graus[para] += 1
+
+    return min(graus.values())
+
+def calcular_graumaximo(grafo):
+    graus = {no: 0 for no in grafo.nos}
+
+    # Corrigido para desempacotar os três valores
+    for de, para, custo in grafo.arestas + grafo.arcos:
+        graus[de] += 1
+        graus[para] += 1
+
     return max(graus.values()) if graus else None
 
 def calcular_intermediacao(grafo, matriz_caminhos):

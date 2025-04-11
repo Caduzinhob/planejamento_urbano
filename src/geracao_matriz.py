@@ -1,18 +1,29 @@
-def floyd_warshall(grafo):
-    dist = {no: {no2: float('inf') for no2 in grafo.nos} for no in grafo.nos}
-    for no in grafo.nos:
-        dist[no][no] = 0  
+def floydwarshall(grafo):
+    no = sorted(grafo.nos)  # Corrigido para usar 'grafo.nos'
+    n = len(no)
+    idx = {no: i for i, no in enumerate(no)}
 
+    # Inicialização da matriz
+    dist = [[float('inf')] * n for i in range(n)]
+    for i in range(n):
+        dist[i][i] = 0
+
+    # Preenchimento inicial
     for de, para, custo in grafo.arestas:
-        dist[de][para] = custo
-        dist[para][de] = custo  
+        i, j = idx[de], idx[para]
+        dist[i][j] = min(dist[i][j], custo)
+        dist[j][i] = min(dist[j][i], custo)
 
     for de, para, custo in grafo.arcos:
-        dist[de][para] = custo  
+        i, j = idx[de], idx[para]
+        dist[i][j] = min(dist[i][j], custo)
 
-    for k in grafo.nos:
-        for i in grafo.nos:
-            for j in grafo.nos:
-                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+    # Algoritmo principal
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[i][j] > dist[i][k] + dist[k][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
 
-    return dist
+    # Corrigido para evitar sobrescrever a variável 'no'
+    return {no_atual: {no[j]: dist[i][j] for j in range(n)} for i, no_atual in enumerate(no)}
